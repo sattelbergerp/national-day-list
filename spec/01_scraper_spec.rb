@@ -1,7 +1,7 @@
 require_relative '../config/enviroment'
 
 feb_2_hash = {
-	title: "Febuary 2nd",
+	title: "February 2nd",
 	days: [
 		{name: "National Groundhog Day", url: "http://nationaldaycalendar.com/national-groundhog-day-february-2/"},
 		{name: "National Heavenly Hash Day", url: "http://nationaldaycalendar.com/national-heavenly-hash-day-february-2/"}
@@ -15,7 +15,7 @@ describe "Scraper" do
 
 	describe "#scrape_month" do
 		#Is it bad to put code outside of tests?
-		national_days = Scraper.scrape_month("../fixtures/holiday-site/febuary.html")
+		national_days = Scraper.scrape_month("http://www.nationaldaycalendar.com/february/")
 		it "returns the correct number of days" do
 			expect(national_days.count).to eq(28)
 		end
