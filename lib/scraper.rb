@@ -1,5 +1,4 @@
 
-
 class Scraper
 
 	#Used in openuri requests to prevent 403
@@ -19,6 +18,15 @@ class Scraper
 			days_of_month << day_of_month
 		end
 		days_of_month
+	end
+
+	def self.scrape_day_details(full_url)
+		doc = Nokogiri::HTML(open(full_url, 'User-Agent'=>USER_AGENT))
+		details = {details_url:full_url}
+		details[:title] = doc.css(".post-content > h3").text.gsub!("\u00A0", ' ')
+		details[:summary] = doc.css(".post-content > p > span")[1].text.gsub!("\u00A0", ' ')
+		details[:image] = doc.css(".post-content img").attr("src").value
+		details
 	end
 
 end
