@@ -37,6 +37,8 @@ class CLI
 					case cmd.length
 					when 2
 						printDay(month[day].title, cmd[0], month[day].days, day)
+					when 3
+						printDayDetails(month[day].title, cmd[0], month[day].days, day, month[day].days[cmd[2].to_i-1])
 					end
 				else
 					puts "Invalid day"
@@ -70,6 +72,13 @@ class CLI
 			puts "	#{month_name} #{index_in_month+1} #{index+1}. #{nday.name}"
 		end
 		puts ""
+	end
+
+	def printDayDetails(readable_name, month_name, days, index_in_month, national_day)
+		national_day.add_details unless national_day.has_details
+		puts "#{national_day.url}"
+		puts "#{national_day.name}"
+		puts "#{national_day.summary}"
 	end
 
 end

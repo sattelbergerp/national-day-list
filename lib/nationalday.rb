@@ -12,6 +12,7 @@ class NationalDay
 	#Checkl to see if #has_details is true to avoid excess network requests
 	def add_details(hash=Scraper.scrape_day_details(url))
 		hash.each do |k,v|
+			#tfw you cant check to see if a method is defined with a string, only a symbol
 			self.send("#{k}=",v)
 		end
 		@has_details=true

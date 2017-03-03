@@ -22,10 +22,12 @@ class Scraper
 
 	def self.scrape_day_details(full_url)
 		doc = Nokogiri::HTML(open(full_url, 'User-Agent'=>USER_AGENT))
-		details = {details_url:full_url}
-		details[:title] = doc.css(".post-content > h3").text.gsub!("\u00A0", ' ')
-		details[:summary] = doc.css(".post-content > p > span")[1].text.gsub!("\u00A0", ' ')
-		details[:image] = doc.css(".post-content img").attr("src").value
+		details = {}
+		if doc.css(".post-content > p").count > 1
+			details[:summary] = doc.css(".post-content > p")[1].text.gsub!("\u00A0", ' ')
+		else
+			details[:summary] = doc.css(".post-content > p")[0].text.gsub!("\u00A0", ' ')
+		end
 		details
 	end
 
