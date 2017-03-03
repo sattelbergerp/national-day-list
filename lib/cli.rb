@@ -29,6 +29,21 @@ class CLI
 			if month
 				month.count.times {|index| printDay(month[index].title, cmd[0], month[index].days, index)}
 			end
+		when 2..4
+			month = getMonth(cmd[0])
+			day = cmd[1].to_i-1
+			if month
+				if day > -1 && day < month.count
+					case cmd.length
+					when 2
+						printDay(month[day].title, cmd[0], month[day].days, day)
+					end
+				else
+					puts "Invalid day"
+				end
+			else
+				puts "Invalid date command"
+			end
 		end
 	end
 
