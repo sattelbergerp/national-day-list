@@ -39,6 +39,8 @@ class CLI
 						printDay(month[day].title, cmd[0], month[day].days, day)
 					when 3
 						printDayDetails(month[day].title, cmd[0], month[day].days, day, month[day].days[cmd[2].to_i-1])
+					when 4
+						Launchy.open(month[day].days[cmd[2].to_i-1].url)
 					end
 				else
 					puts "Invalid day"
