@@ -23,31 +23,52 @@ class CLI
 
 	private
 	def parseDateCommand(cmd)
-		case cmd.length
-		when 1
-			month = getMonth(cmd[0])
-			if month
-				month.count.times {|index| printDay(month[index].title, cmd[0], month[index].days, index)}
-			end
-		when 2..4
-			month = getMonth(cmd[0])
-			day = cmd[1].to_i-1
-			if month
-				if day > -1 && day < month.count
-					case cmd.length
-					when 2
-						printDay(month[day].title, cmd[0], month[day].days, day)
-					when 3
-						printDayDetails(month[day].title, cmd[0], month[day].days, day, month[day].days[cmd[2].to_i-1])
-					when 4
-						Launchy.open(month[day].days[cmd[2].to_i-1].url)
-					end
-				else
-					puts "Invalid day"
-				end
+		month = getMonth(cmd[0])
+		if month
+			if cmd.count > 1
+				parseDayCommand(cmd, month)
 			else
-				puts "Invalid date command"
+				month.count.times {|index| printDay(month[index], cmd[0], index+1)}
 			end
+		else
+			puts "Unknown month or command"
+		end
+	end
+
+	def parseDayCommand(cmd, month)
+		day_index = cmd[1].to_i-1
+		day = month[day_index]
+		if day && day_index > -1
+			if cmd.count>2
+				parseDayDetailsCommand(cmd, month, day)
+			else
+				printDay(day, cmd[0], cmd[1])
+			end
+		else
+			puts "Could not find day in month"
+		end
+	end
+
+	def parseDayDetailsCommand(cmd, month, day)
+		nday_index = cmd[2].to_i-1
+		nday = day.days[nday_index]
+		if nday && nday_index>-1
+			if cmd.count > 3
+				parseDayOperationCommand(nday, cmd)
+			else
+				printDayDetails(nday, cmd[0], cmd[1])
+			end
+		else
+			puts "Can't find national day on specified date"
+		end
+	end
+
+	def parseDayOperationCommand(nday, cmd)
+		case cmd[3]
+		when "open"
+			Launchy.open(nday.url)
+		else
+			puts "Unknown command for national day"
 		end
 	end
 
@@ -62,21 +83,20 @@ class CLI
 				@cache[id] = DayOfMonth.array_from_hash_array(Scraper.scrape_month("http://www.nationaldaycalendar.com/#{id}/"))
 			end
 		else
-			puts "Month does not exist: #{id}"
 			nil
 		end
 	end
 
 	#takes a day of month
-	def printDay(readable_name, month_name, days, index_in_month)
-		puts "#{readable_name}"
-		days.each_with_index do |nday, index|
-			puts "	#{month_name} #{index_in_month+1} #{index+1}. #{nday.name}"
+	def printDay(day_of_month, month_name, day_name)
+		puts "#{day_of_month.title}"
+		day_of_month.days.each_with_index do |nday, index|
+			puts "	#{month_name} #{day_name} #{index+1}. #{nday.name}"
 		end
 		puts ""
 	end
 
-	def printDayDetails(readable_name, month_name, days, index_in_month, national_day)
+	def printDayDetails(national_day, month_name, day_name)
 		national_day.add_details unless national_day.has_details
 		puts "#{national_day.url}"
 		puts "#{national_day.name}"
