@@ -54,7 +54,7 @@ class CLI
 	#takes a string or number representing a month
 	def getMonth(id)
 		id = MONTHS[id.to_i-1] unless id.to_i==0
-		id = id.downcase
+		id = id.downcase unless id==nil
 		if MONTHS.include?(id)
 			if(@cache[id]!=nil)
 				@cache[id]
