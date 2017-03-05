@@ -9,6 +9,7 @@ class CLI
 	end
 
 	def run
+		puts "CLI for 'www.nationaldaycalendar.com'. Type 'help' for usage."
 		loop do
 			print '>'
 			cmd = gets.chomp.split(" ")
@@ -18,6 +19,12 @@ class CLI
 			when "today"
 				date = Date.today
 				parseDateCommand([date.month, date.mday] + cmd[1..-1])
+			when 'help'
+				puts "Type '1' or 'january' to view all national days for january."
+				puts "Type '1 2' or 'january' first to view all national days for january second."
+				puts "Type '1 2 4' to view the fourth national day for january second."
+				puts "Month and day of month can be replaced with 'today' in all commands."
+				puts "Type 'exit' to exit"
 			else
 				parseDateCommand(cmd);
 			end
@@ -59,7 +66,7 @@ class CLI
 			if cmd.count > 3
 				parseDayOperationCommand(nday, cmd)
 			else
-				printDayDetails(nday, cmd[0], cmd[1])
+				printDayDetails(nday, cmd[0], cmd[1], cmd[2])
 			end
 		else
 			puts "Can't find national day on specified date".colorize(:light_red)
@@ -99,11 +106,13 @@ class CLI
 		puts ""
 	end
 
-	def printDayDetails(national_day, month_name, day_name)
+	def printDayDetails(national_day, month_name, day_name, nday_name)
 		national_day.add_details unless national_day.has_details
 		puts "#{national_day.url}"
 		puts "#{national_day.name}".colorize(:light_yellow)
-		puts "#{national_day.summary}"
+		puts "#{national_day.summary}" if national_day.summary!=nil && !national_day.summary.empty?
+		puts ""
+		puts "Type '#{month_name} #{day_name} #{nday_name} open' to view in your default browser."
 	end
 
 end
