@@ -9,7 +9,7 @@ feb_2_hash = {
 }
 
 feb_2_1_first_details = {
-	summary: "Groundhog Day is observed on February 2nd, each year in the United States and Canada.  For a nice welcomed break during the winter, on this day the groundhog awakens from his nap and goes outside to see if he can see his shadow.  It is believed by many that if the groundhog sees his shadow that there will then be six more weeks of winter. If this is so,  he then retrieves back into his den and goes back to sleep.  If he is not able to see his shadow, the groundhog remains outside to play and people celebrate believing that spring is just around the corner.",
+	summary: "Will he see his shadow or will he not?  That is the question!",
 }
 
 describe "Scraper" do

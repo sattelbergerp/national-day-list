@@ -23,10 +23,11 @@ class Scraper
 	def self.scrape_day_details(full_url)
 		doc = Nokogiri::HTML(open(full_url, 'User-Agent'=>USER_AGENT))
 		details = {}
-		if doc.css(".post-content > p").count > 1
-			details[:summary] = doc.css(".post-content > p")[1].text.gsub!("\u00A0", ' ')
-		else
-			details[:summary] = doc.css(".post-content > p")[0].text.gsub!("\u00A0", ' ')
+		doc.css(".post-content > p").each do |item|
+			if !item.text.strip.empty?
+				details[:summary] = item.text.gsub("\u00A0", ' ')
+				break
+			end
 		end
 		details
 	end
