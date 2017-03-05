@@ -15,6 +15,9 @@ class CLI
 			case cmd[0]
 			when "exit"
 				return;
+			when "today"
+				date = Date.today
+				parseDateCommand([date.month, date.mday] + cmd[1..-1])
 			else
 				parseDateCommand(cmd);
 			end
