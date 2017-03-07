@@ -4,8 +4,11 @@ class CLI
 
 	MONTHS= ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 
+	attr_reader :api
+
 	def initialize()
 		@cache = {}
+		@api = NationalDayApi.new()
 	end
 
 	def run
@@ -33,7 +36,8 @@ class CLI
 
 	private
 	def parseDateCommand(cmd)
-		month = getMonth(cmd[0])
+		puts "Loading Month Information..." unless api.cached?(cmd[0])
+		month = api.get_month(cmd[0])
 		if month
 			if cmd.count > 1
 				parseDayCommand(cmd, month)
@@ -82,21 +86,6 @@ class CLI
 		end
 	end
 
-	#takes a string or number representing a month
-	def getMonth(id)
-		id = MONTHS[id.to_i-1] unless id.to_i==0
-		id = id.downcase unless id==nil
-		if MONTHS.include?(id)
-			if(@cache[id]!=nil)
-				@cache[id]
-			else
-				@cache[id] = DayOfMonth.array_from_hash_array(Scraper.scrape_month("http://www.nationaldaycalendar.com/#{id}/"))
-			end
-		else
-			nil
-		end
-	end
-
 	#takes a day of month
 	def printDay(day_of_month, month_name, day_name)
 		puts "#{day_of_month.title}".colorize(:light_yellow)
@@ -107,7 +96,10 @@ class CLI
 	end
 
 	def printDayDetails(national_day, month_name, day_name, nday_name)
-		national_day.add_details unless national_day.has_details
+		if !national_day.has_details
+			puts "Loading National Day Information..."
+			national_day.add_details
+		end
 		puts "#{national_day.url}"
 		puts "#{national_day.name}".colorize(:light_yellow)
 		puts "#{national_day.summary}" if national_day.summary!=nil && !national_day.summary.empty?
