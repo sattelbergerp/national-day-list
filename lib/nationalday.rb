@@ -17,4 +17,8 @@ class NationalDay
 		end
 		@has_details=true
 	end
+
+	def ==(other)
+		name==other.name&&url==other.url&&summary==other.summary&&image==other.image
+	end
 end
