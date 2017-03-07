@@ -14,8 +14,8 @@ describe "NationalDayApi" do
 
 
 	describe '#get_month' do
-		it 'Returns the corrent month for string "march"' do
-			expect(api.get_month("march")[0].title).to eq("March 1st")
+		it 'Returns the corrent month for string "March"' do
+			expect(api.get_month("March")[0].title).to eq("March 1st")
 		end
 		it 'Returns the corrent month for string "3"' do
 			expect(api.get_month("3")[0].title).to eq("March 1st")

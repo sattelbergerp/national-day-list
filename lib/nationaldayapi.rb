@@ -35,7 +35,7 @@ class NationalDayApi
 	def get_month_index(input)
 		return input if input.class==Fixnum
 		return input.to_i()-1 unless input.to_i()==0
-		MONTHS.find_index(input)
+		MONTHS.find_index(input.downcase)
 	end
 
 end
