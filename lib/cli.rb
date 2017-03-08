@@ -8,7 +8,7 @@ class CLI
 
 	def initialize()
 		@cache = {}
-		@api = NationalDayApi.new()
+		@api = NationalDayList.new()
 	end
 
 	def run

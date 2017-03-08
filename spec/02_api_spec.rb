@@ -9,8 +9,8 @@ march_7th_summary.name = "National Cereal Day"
 march_7th_summary.url = "http://nationaldaycalendar.com/national-cereal-day-march-7/"
 march_7th_summary.summary = "Get your bowl and your spoon ready for March 7 is National Cereal Day. Since the end of the 19th century, cereal has become America’s most popular breakfast food."
 
-api = NationalDayApi.new()
-describe "NationalDayApi" do
+api = NationalDayList.new()
+describe "NationalDayList" do
 
 
 	describe '#get_month' do

@@ -1,4 +1,4 @@
-class NationalDayApi
+class NationalDayList
 
 	attr_accessor :use_cache
 	MONTHS= ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
