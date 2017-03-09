@@ -1,17 +1,22 @@
-
+# National Day List
 A simple api & cli for getting a list of national days from 'www.nationaldaycalendar.com'.
 
-# Installation
+## Dependencies
+* Ruby
+* Bundler
 
-Requires ruby and bundler. Ruby dev may need to be installed.
+*Ruby dev may also be required*
+
+## Installation
 
 Clone the project and cd into the newly created folder.
+
 	bundle install
 
-# Running
+## Running
 	bundle exec ruby bin/run
 
-# Api Usage
+## Api Usage
 	#Create the api with caching
 	api = NationalDayApi.new
 	#Create the api without caching
@@ -40,3 +45,7 @@ Clone the project and cd into the newly created folder.
 	#Fetch details if we don't already have them
 	nday.add_details unless nday.has_details
 	nday_summary = nday.summary
+
+## License
+MIT
+See LICENSE.txt
