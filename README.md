@@ -53,7 +53,7 @@ Pull requests welcome
 * Write new tests for new api changes (Adding information or features).
 * Make sure all tests pass before submitting.
 
-If you have questions or feedback you can contact me at sattelbergerp@gmail.com. 
+If you have questions or feedback you can contact me at sattelbergerp@gmail.com.
 *Yes I used two spaces for indentation; no I don't like it either.*
 
 ## License

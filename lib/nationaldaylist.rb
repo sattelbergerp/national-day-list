@@ -5,7 +5,7 @@ class NationalDayList
 	attr_accessor :use_cache
 	MONTHS ||= ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 	URL_BASE ||= "http://www.nationaldaycalendar.com/"
-	VERSION ||= '1.0.0'
+	VERSION ||= '1.0.1'
 
 	def initialize(use_cache=true)
 		@use_cache = use_cache

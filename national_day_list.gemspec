@@ -1,13 +1,13 @@
 Gem::Specification.new do |s|
 	s.name = 'national_day_list'
-	s.version='1.0.0'
+	s.version='1.0.1'
 	s.author = 'Patrick Sattelberger'
 	s.email = 'sattelbergerp@gmail.com'
 
 	s.date = Time.new.strftime('%Y-%m-%d')
 
 	s.homepage = 'https://github.com/sattelbergerp/national-day-list'
-	s.summary = 'National Day List'
+	s.summary = "A simple api & cli for getting a list of national days from 'www.nationaldaycalendar.com'."
 	s.license = 'MIT'
 
 	s.require_paths = ['lib']
