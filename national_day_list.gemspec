@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name = 'national_day_list'
-	s.version='0.0.1'
+	s.version='1.0.0'
 	s.author = 'Patrick Sattelberger'
 	s.email = 'sattelbergerp@gmail.com'
 
