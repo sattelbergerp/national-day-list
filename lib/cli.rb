@@ -21,7 +21,7 @@ class CLI
 				return;
 			when "today"
 				date = Date.today
-				parseDateCommand([date.month, date.mday] + cmd[1..-1])
+				parseDateCommand([date.month.to_s, date.mday.to_s] + cmd[1..-1])
 			when 'help'
 				puts "Type '1' or 'january' to view all national days for january."
 				puts "Type '1 2' or 'january' first to view all national days for january second."

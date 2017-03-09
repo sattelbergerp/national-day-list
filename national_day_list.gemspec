@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
 	s.license = 'MIT'
 
 	s.require_paths = ['lib']
+	s.add_runtime_dependency 'bundler'
 	s.add_runtime_dependency 'nokogiri', '1.7.0.1'
 	s.add_runtime_dependency 'require_all', '~> 1.3'
 	s.add_runtime_dependency 'launchy'

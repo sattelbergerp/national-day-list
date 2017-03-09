@@ -3,32 +3,33 @@ A simple api & cli for getting a list of national days from 'www.nationaldaycale
 
 ## Dependencies
 * Ruby
-* Bundler
+* Ruby gems
 
 *Ruby dev may also be required*
 
 ## Installation
 
-Clone the project and cd into the newly created folder.
-
-	bundle install
+	gem install national_day_list
 
 ## Running
-	bundle exec ruby bin/run
+	nationaldaylist
 
 ## Api Usage
+
+	require 'nationaldaylist'
+
 	#Create the api with caching
-	api = NationalDayApi.new
+	api = NationalDayList.new
 	#Create the api without caching
-	api = NationalDayApi.new(false)
+	api = NationalDayList.new(false)
 
 	#Get a month. You can alse specify its number ("3") or index (2)
-	month = api.getMonth("march")
+	month = api.get_month("march")
 
-	#Returns true if the month is cached, teks the same perameters as #getMonth
-	cached = api.isCached("march")
+	#Returns true if the month is cached, teks the same perameters as #get_month
+	cached = api.cached?("march")
 
-	#getMonth will cache the month when called and return the cached data if available
+	#get_month will cache the month when called and return the cached data if available
 	#Clear the cache
 	api.clear_cache()
 
@@ -45,6 +46,15 @@ Clone the project and cd into the newly created folder.
 	#Fetch details if we don't already have them
 	nday.add_details unless nday.has_details
 	nday_summary = nday.summary
+
+## Contributing
+Pull requests welcome
+* Try to follow existing coding styles and patterns.
+* Write new tests for new api changes (Adding information or features).
+* Make sure all tests pass before submitting.
+
+If you have questions or feedback you can contact me at sattelbergerp@gmail.com. 
+*Yes I used two spaces for indentation; no I don't like it either.*
 
 ## License
 MIT
