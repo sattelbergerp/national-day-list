@@ -3,9 +3,9 @@ require_relative '../config/enviroment'
 class NationalDayList
 
 	attr_accessor :use_cache
-	MONTHS= ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
-	URL_BASE = "http://www.nationaldaycalendar.com/"
-	VERSION = '1.0.0'
+	MONTHS ||= ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+	URL_BASE ||= "http://www.nationaldaycalendar.com/"
+	VERSION ||= '1.0.0'
 
 	def initialize(use_cache=true)
 		@use_cache = use_cache
